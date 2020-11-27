@@ -30,16 +30,13 @@ int processing_c_width_minus_flag(t_fnc_data *data)
 
 int processing_c_flags(va_list saved_variables, t_fnc_data *data)
 {
-	int return_value;
-
-	return_value = 1;
 	if (data->precision)
-		return_value = processing_c_precison_flag();
+		return(processing_c_precison_flag());
 	if (data->zero)
-		return_value = processing_c_zero_flag();
+		return(processing_c_zero_flag());
 	if (data->width)
-		return_value = processing_c_width_minus_flag(data);
-	return (return_value);
+		return(processing_c_width_minus_flag(data));
+	return (1);
 }
 
 int processing_c(va_list saved_variables, t_fnc_data *data)

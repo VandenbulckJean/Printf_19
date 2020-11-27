@@ -28,3 +28,21 @@ int		Memory_allocation_error_free(void *to_free)
 	free(to_free);
 	return (-1);
 }
+
+char *truncstr(char *oldstr, int range)
+{
+	char *newstr;
+	int i;
+
+	i = 0;
+	if (!(newstr = malloc(sizeof(char) * range + 1)))
+		return (NULL);
+	while (i < range)
+	{
+		newstr[i] = oldstr[i];
+		i++;
+	}
+	newstr[range] = '\0';
+	free(oldstr);
+	return (newstr);
+}

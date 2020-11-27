@@ -1,0 +1,70 @@
+#include "printf.h"
+
+int processing_u(va_list saved_variables, t_fnc_data *data)
+{
+	char *str;
+	unsigned int value;
+
+	value = va_arg(saved_variables, unsigned int);
+	if (data->precision && value == 0)
+	{
+		if (!(str = malloc(sizeof(char) * 1)))
+			return (-1);
+		str[1] = '\0';
+	}
+	else
+	{
+		if (!(str = ft_itoa(value, 10, "0123456789")))
+			return (-1);
+		if (!(data->string = ft_strjoin_back(data->string, str)))
+			return (Memory_allocation_error_free(str));
+	}
+	free(str);
+	return(processing_d_flags(saved_variables, data, 0));
+}
+
+int	processing_x(va_list saved_variables, t_fnc_data *data)
+{
+	char *str;
+	unsigned int value;
+
+	value = va_arg(saved_variables, unsigned int);
+	if (data->precision && value == 0)
+	{
+		if (!(str = malloc(sizeof(char) * 1)))
+			return (-1);
+		str[1] = '\0';
+	}
+	else
+	{
+		if (!(str = ft_itoa(value, 16, "0123456789abcdef")))
+			return (-1);
+		if (!(data->string = ft_strjoin_back(data->string, str)))
+			return (Memory_allocation_error_free(str));
+	}
+	free(str);
+	return(processing_d_flags(saved_variables, data, 0));
+}
+
+int	processing_X(va_list saved_variables, t_fnc_data *data)
+{
+	char *str;
+	unsigned int value;
+
+	value = va_arg(saved_variables, unsigned int);
+	if (data->precision && value == 0)
+	{
+		if (!(str = malloc(sizeof(char) * 1)))
+			return (-1);
+		str[1] = '\0';
+	}
+	else
+	{
+		if (!(str = ft_itoa(value, 16, "0123456789ABCDEF")))
+			return (-1);
+		if (!(data->string = ft_strjoin_back(data->string, str)))
+			return (Memory_allocation_error_free(str));
+	}
+	free(str);
+	return(processing_d_flags(saved_variables, data, 0));
+}

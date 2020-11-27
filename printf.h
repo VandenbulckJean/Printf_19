@@ -33,7 +33,15 @@ int processing_c(va_list saved_variables, t_fnc_data *data);
 char 	*create_filled_string(int length, char filler);
 
 int processing_d(va_list saved_variables, t_fnc_data *data);
+int processing_d_flags(va_list saved_variables, t_fnc_data *data, int negative);
 
+int processing_s(va_list saved_variables, t_fnc_data *data);
+char *truncstr(char *oldstr, int range);
+int processing_p(va_list saved_variables, t_fnc_data *data);
+int processing_u(va_list saved_variables, t_fnc_data *data);
+int	processing_x(va_list saved_variables, t_fnc_data *data);
+int	processing_X(va_list saved_variables, t_fnc_data *data);
+int processing_percent(va_list saved_variables, t_fnc_data *data);
 
 
 

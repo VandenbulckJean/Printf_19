@@ -4,7 +4,7 @@ int main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
-	int number = 534;
+	int number = -14;
 	char character = 'f';
 	char *word = "coucou toi !";
 	char **coucou = &word;
@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 	char newline = '\n';
 
 
-	printf("hey %0d|\n", number);
-	ft_printf("hey %0d|", number);
+	printf("%-5c|\n", '\0');
+	ft_printf("%-5c|", '\0');
+
 }

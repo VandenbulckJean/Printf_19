@@ -14,8 +14,9 @@ int		ft_strlen(char *str)
 	int i;
 
 	i = 0;
-	while (str[i])
-		i++;
+	if (str)
+		while (str[i])
+			i++;
 	return (i);
 }
 
@@ -70,6 +71,9 @@ char	*ft_strdup(char *s1)
 {
 	char	*s1bis;
 	size_t	i;
+
+	if (!(s1))
+		return(s1bis = ft_strdup("(null)"));
 
 	i = ft_strlen(s1);
 	if (!(s1bis = (char *)malloc(sizeof(char) * (i + 1))))

@@ -23,7 +23,6 @@ t_fnc_data	*mallocandsetzero()
 void	parsing(va_list saved_variables, t_fnc_data *data, int start, int range, char *entry)
 {
 	data->conversion = entry[start+range];
-
 	while (range)
 	{
 
@@ -48,11 +47,14 @@ void	parsing(va_list saved_variables, t_fnc_data *data, int start, int range, ch
 				}
 			}
 		}
-		if (((entry[start] >= '1' && entry[start] <= '9') || (isnumber(entry[start]) && data->width != 0)) && range)
+		if ((entry[start] >= '1' && entry[start] <= '9') && range)
 		{
-			data->width = (data->width * 10) + entry[start] - '0';
-			start++;
-			range--;
+			while (isnumber(entry[start]) && range)
+				{
+					data->width = (data->width * 10) + entry[start] - '0';
+					start++;
+					range--;
+				}
 		}
 		if (entry[start] == '-' && range)
 		{
@@ -75,119 +77,26 @@ void	parsing(va_list saved_variables, t_fnc_data *data, int start, int range, ch
 	}
 }
 
-
-
 int	resolve(va_list saved_variables, t_fnc_data *data)
 {
 	char *str;
 	if (data->conversion == 'c')
 		return (processing_c(saved_variables, data));
 	if (data->conversion == 's')
-	{
-		str = ft_strdup(va_arg(saved_variables, char*));
-		data->string = ft_strjoin_back(data->string, str);
-		free(str);
-	}
+		return(processing_s(saved_variables, data));
 	if (data->conversion == 'p')
-	{
-		str = ft_itoa(va_arg(saved_variables,long long int), 16, "0123456789abcdef");
-		data->string = ft_strjoin_back(data->string, "0x");
-		data->string = ft_strjoin_back(data->string, str);
-		free(str);
-	}
+		return(processing_p(saved_variables, data));
 	if (data->conversion == 'd' || data->conversion == 'i')
 		return(processing_d(saved_variables, data));
 	if (data->conversion == 'u')
-	{
-		str = ft_itoa(va_arg(saved_variables, int), 10, "0123456789");
-		data->string = ft_strjoin_back(data->string, str);
-		free(str);
-	}
+		return(processing_u(saved_variables, data));
 	if (data->conversion == 'x')
-	{
-		str = ft_itoa(va_arg(saved_variables, int), 16, "0123456789abcdef");
-		data->string = ft_strjoin_back(data->string, str);
-		free(str);
-	}
+		return(processing_x(saved_variables, data));
 	if (data->conversion == 'X')
-	{
-		str = ft_itoa(va_arg(saved_variables, int), 16, "0123456789ABCDEF");
-		data->string = ft_strjoin_back(data->string, str);
-		free(str);
-	}
+		return(processing_X(saved_variables, data));
 	if (data->conversion == '%')
-	{
-		data->string = ft_strjoin_back(data->string, "%");
-	}
-	return (0);
-}
-
-/*int resolveflag(t_fnc_data *data)
-{
-	char *str;
-	int i;
-
-	i = 0;
-	if (data->width)
-	{
-		if (data->precision)
-	{
-		if (data->amount_precision == 0 && (isinstr("diuxX", data->conversion)) && data->string[0] == '0')
-		{
-			free(data->string);
-			if (!(data->string = malloc(sizeof(char))))
-				return (-1);
-			data->string[0] = '\0';
-		}
-		if ((data->amount_precision > ft_strlen(data->string)) && (isinstr("diuxX", data->conversion)))
-		{
-			str = createfilledstr((data->amount_precision - ft_strlen(data->string)), '0');
-			str = ft_strjoin_back (str, data->string);
-			free(data->string);
-			data->string = str;
-		}
-		if (data->width && data->zero && !(data->minus))
-		{
-			i = ft_strlen(data->string) - 1 - data->amount_precision;
-			while (i >= 0)
-				data->string[i--] = ' ';
-		} else if (data->width && !(data->zero) && !(data->minus))
-		{
-			i = ft_strlen(data->string) - data->amount_precision;
-			while(data->string[i] && data->string[i] == ' ')
-				data->string[i++] = '0';
-		}
-	}
-		if (data->zero)
-			str = createfilledstr((data->width - ft_strlen(data->string)), '0');
-		else
-			str = createfilledstr((data->width - ft_strlen(data->string)), ' ');
-		if (data->minus && !(data->zero))
-		{
-			data->string = ft_strjoin_back(data->string, str);
-			free(str);
-		}
-		else if (data->minus && !(data->zero) && data->precision)
-		{
-		}
-		else
-		{
-			str = ft_strjoin_back (str, data->string);
-			free(data->string);
-			data->string = str;
-		}
-			
-	}
-	return (0);
-}*/
-void	error_handler(int error_code)
-{
-	if (error_code == -1)
-		putstr("[Memory allocation error]");
-	if (error_code == -10)
-		putstr("[Precision flag used with ‘c’ has undefined behavior]");
-	if (error_code == -11)
-		putstr("[Zero flag used with ‘c’ has undefined behavior]");
+		return(processing_percent(saved_variables, data));
+	return (-2);
 }
 
 int	entry_processing(va_list saved_variables,char *entry, t_fnc_data *fnc_data)
@@ -210,7 +119,7 @@ int	entry_processing(va_list saved_variables,char *entry, t_fnc_data *fnc_data)
 					return (0);
 			}
 			parsing(saved_variables, fnc_data, start, i++ - start, entry);
-			error_handler(resolve(saved_variables, fnc_data));
+			resolve(saved_variables, fnc_data);
 			putstr(fnc_data->string);
 			free(fnc_data);
 		}

@@ -1,50 +1,49 @@
 # include "printf.h"
 
-char		*getnumberintostr(int i, int neg, unsigned long long int nb, int base, char *basestr)
+int				get_size(unsigned long long int n, int base)
 {
-	char			*str;
+	int size;
 
-	if (neg == 1)
-		i++;
-	if (!(str = malloc(sizeof(char) * i + 2)))
-		return (NULL);
-	if (nb == 0)
+	size = 1;
+	while (n / base > 0)
 	{
-		str[0] = '0';
-		str[1] = '\0';
-		return (str);
+		size++;
+		n /= base;
 	}
-	str[i + 1] = '\0';
-	while (nb > 0)
-	{
-		str[i] = basestr[(nb % base)];
-		nb = nb / base;
-		i--;
-	}
-	if (neg == 1)
-		str[0] = '-';
-	return (str);
+	return (size);
 }
 
-char			*ft_itoa(int long long n, int base, char *basestr)
+void			get_sign(long long int n, unsigned long long int *temp, int *sign)
 {
-	int						i;
-	int						neg;
-	unsigned long long int	nb;
-
-	i = 0;
-	neg = 0;
 	if (n < 0)
 	{
-		neg = 1;
-		nb = n * -1;
+		*temp = -n;
+		*sign = 1;
 	}
 	else
-		nb = n;
-	while (n >= base)
+		*temp = n;
+}
+
+char			*ft_itoa(long long int n, int base, char *basestr)
+{
+	int				sign;
+	int				size;
+	unsigned long long int	temp;
+	char			*number;
+
+	sign = 0;
+	get_sign(n, &temp, &sign);
+	size = get_size(temp, base);
+	if (!(number = (char*)malloc(sizeof(char) * (size + sign + 1))))
+		return (NULL);
+	number[size + sign] = '\0';
+	while (size)
 	{
-		n = n / base;
-		i++;
+		number[size + sign - 1] = basestr[temp % base];
+		temp /= base;
+		size--;
 	}
-	return (getnumberintostr(i, neg, nb, base, basestr));
+	if (sign == 1)
+		number[0] = '-';
+	return (number);
 }
