@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
+/*   Updated: 2020/12/02 12:26:06 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "printf.h"
 
-t_fnc_data	*mallocandsetzero()
+static t_fnc_data	*mallocandsetzero()
 {
-	t_fnc_data *data;
+	t_fnc_data	*data;
+	
 	if (!(data = malloc(sizeof(t_fnc_data))))
 		return (NULL);
 	data->amount_precision = 0;
@@ -20,120 +33,56 @@ t_fnc_data	*mallocandsetzero()
 	return (data);
 }
 
-void	parsing(va_list saved_variables, t_fnc_data *data, int start, int range, char *entry)
+static void write_count_free(t_fnc_data *data, int *writtenchar)
 {
-	data->conversion = entry[start+range];
-	while (range)
-	{
-
-		if (entry[start] == '.')
-		{
-			data->precision = 1;
-			start++;
-			range--;
-			if (entry[start] == '*')
-			{
-				data->amount_precision = va_arg(saved_variables, int);
-				start++;
-				range--;
-			}
-			else
-			{
-				while (isnumber(entry[start]) && range)
-				{
-					data->amount_precision = (data->amount_precision * 10) + entry[start] - '0';
-					start++;
-					range--;
-				}
-			}
-		}
-		if ((entry[start] >= '1' && entry[start] <= '9') && range)
-		{
-			while (isnumber(entry[start]) && range)
-				{
-					data->width = (data->width * 10) + entry[start] - '0';
-					start++;
-					range--;
-				}
-		}
-		if (entry[start] == '-' && range)
-		{
-			data->minus = 1;
-			start++;
-			range--;
-		}
-		if (entry[start] == '0' && range)
-		{
-			data->zero = 1;
-			start++;
-			range--;
-		}
-		if (entry[start] == '*' && range)
-		{
-			data->width = va_arg(saved_variables, int);
-			start++;
-			range--;
-		}
-	}
+	putstr(data->string);
+	*writtenchar = *writtenchar + ft_strlen(data->string);
+	free_data(data);
 }
 
-int	resolve(va_list saved_variables, t_fnc_data *data)
+static void write_count(char c, int *writtenchar)
 {
-	char *str;
-	if (data->conversion == 'c')
-		return (processing_c(saved_variables, data));
-	if (data->conversion == 's')
-		return(processing_s(saved_variables, data));
-	if (data->conversion == 'p')
-		return(processing_p(saved_variables, data));
-	if (data->conversion == 'd' || data->conversion == 'i')
-		return(processing_d(saved_variables, data));
-	if (data->conversion == 'u')
-		return(processing_u(saved_variables, data));
-	if (data->conversion == 'x')
-		return(processing_x(saved_variables, data));
-	if (data->conversion == 'X')
-		return(processing_X(saved_variables, data));
-	if (data->conversion == '%')
-		return(processing_percent(saved_variables, data));
-	return (-2);
+	write(1, &c, 1);
+	(*writtenchar)++;
 }
 
-int	entry_processing(va_list saved_variables,char *entry, t_fnc_data *fnc_data)
+static int	entry_processing(va_list saved_variables,char *entry, t_fnc_data *fnc_data)
 {
 	int i;
 	int start;
+	int return_value;
+	int writtenchar;
 
 	i = 0;
+	writtenchar = 0;
 	while (entry[i])
 	{
 		while (entry[i] && entry[i] != '%')
-			write(1, &entry[i++], 1);
+			write_count(entry[i++], &writtenchar);
 		if (entry[i] && entry[i] == '%')
 		{
 			start = ++i;
-			fnc_data = mallocandsetzero();
+			if (!(fnc_data = mallocandsetzero()))
+				return (-1);
 			while (!(isinstr("cspdiuxX%", entry[i])) && entry[i])
-			{
 				if (!(isinstr("-.*0123456789", entry[i++])))
 					return (0);
-			}
-			parsing(saved_variables, fnc_data, start, i++ - start, entry);
-			resolve(saved_variables, fnc_data);
-			putstr(fnc_data->string);
-			free(fnc_data);
+			if ((return_value = parsing(saved_variables, fnc_data, start, i++ - start, entry)) == -1)
+				return (return_value);
+			write_count_free(fnc_data, &writtenchar);
 		}
 	}
-	return (1);
+	return (writtenchar);
 }
 
 int		ft_printf(const char *entry, ...)
 {
 	va_list		saved_variables;
-	t_fnc_data *fnc_data;
-
+	t_fnc_data	*fnc_data;
+	int			return_value;
+	
 	va_start(saved_variables,  entry);
-	entry_processing(saved_variables, (char *)entry, fnc_data);
+	return_value = entry_processing(saved_variables, (char *)entry, fnc_data);
 	va_end(saved_variables);
-	return (1);
+	return (return_value);
 }

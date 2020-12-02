@@ -1,5 +1,16 @@
-#include "printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conversion_s.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/01 13:21:14 by jvanden-          #+#    #+#             */
+/*   Updated: 2020/12/01 13:21:15 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+# include "printf.h"
 
 int processing_s_zero_flag(void)
 {
@@ -8,7 +19,7 @@ int processing_s_zero_flag(void)
 
 int processing_s_precision_flag(va_list saved_variables, t_fnc_data *data)
 {
-	if (data->amount_precision < ft_strlen(data->string))
+	if (data->amount_precision < ft_strlen(data->string) && data->amount_precision >= 0)
 		if (!(data->string = truncstr(data->string, data->amount_precision)))
 			return(-1);
 	return (1);

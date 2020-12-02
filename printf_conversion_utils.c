@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf_conversion_utils.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/01 13:21:31 by jvanden-          #+#    #+#             */
+/*   Updated: 2020/12/01 13:21:32 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "printf.h"
 
 int				get_size(unsigned long long int n, int base)
@@ -45,5 +57,23 @@ char			*ft_itoa(long long int n, int base, char *basestr)
 	}
 	if (sign == 1)
 		number[0] = '-';
+	return (number);
+}
+
+char			*ft_itoa_pointer(unsigned long long int n, int base, char *basestr)
+{
+	int				size;
+	char			*number;
+
+	size = get_size(n, base);
+	if (!(number = (char*)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	number[size] = '\0';
+	while (size)
+	{
+		number[size - 1] = basestr[n % base];
+		n /= base;
+		size--;
+	}
 	return (number);
 }

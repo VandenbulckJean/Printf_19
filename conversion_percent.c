@@ -1,4 +1,16 @@
-#include "printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conversion_percent.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/01 13:21:06 by jvanden-          #+#    #+#             */
+/*   Updated: 2020/12/01 13:21:08 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "printf.h"
 
 int processing_percent_width_minus_flag(va_list saved_variables, t_fnc_data *data)
 {

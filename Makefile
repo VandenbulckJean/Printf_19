@@ -6,7 +6,7 @@
 #    By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 16:40:44 by jvanden-          #+#    #+#              #
-#    Updated: 2020/11/27 14:45:57 by jvanden-         ###   ########.fr        #
+#    Updated: 2020/12/02 12:16:21 by jvanden-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,12 @@ FLAGS = -Werror -Wall -Wextra
 NAME = libftprintf.a
 
 SRC = printf.c \
+	parsing.c \
 	printf_utils.c \
 	printf_utils_2.c \
 	printf_flag_utils.c \
 	printf_conversion_utils.c \
-	conversion_d.c \
+	conversion_di.c \
 	conversion_c.c \
 	conversion_s.c \
 	conversion_p.c \

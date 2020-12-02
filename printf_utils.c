@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/01 13:21:50 by jvanden-          #+#    #+#             */
+/*   Updated: 2020/12/01 13:21:52 by jvanden-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "printf.h"
 
 void	putstr(char *str)
@@ -65,25 +77,4 @@ char	*ft_strjoin_front(char *s1, char *s2)
 	*temp = '\0';
 	free(s1);
 	return (newline);
-}
-
-char	*ft_strdup(char *s1)
-{
-	char	*s1bis;
-	size_t	i;
-
-	if (!(s1))
-		return(s1bis = ft_strdup("(null)"));
-
-	i = ft_strlen(s1);
-	if (!(s1bis = (char *)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		s1bis[i] = s1[i];
-		i++;
-	}
-	s1bis[i] = '\0';
-	return (s1bis);
 }
