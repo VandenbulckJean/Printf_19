@@ -6,13 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:46 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/01 13:21:47 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:01:05 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "printf.h"
 
-int		isinstr(char *str, char c)
+int			isinstr(char *str, char c)
 {
 	int i;
 	int len;
@@ -28,20 +28,19 @@ int		isinstr(char *str, char c)
 	return (0);
 }
 
-void free_data(t_fnc_data *data)
+void		free_data(t_fnc_data *data)
 {
 	free(data->string);
 	free(data);
 }
 
-char	*ft_strdup(char *s1)
+char		*ft_strdup(char *s1)
 {
 	char	*s1bis;
 	size_t	i;
 
 	if (!(s1))
-		return(s1bis = ft_strdup("(null)"));
-
+		return (s1bis = ft_strdup("(null)"));
 	i = ft_strlen(s1);
 	if (!(s1bis = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
