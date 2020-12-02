@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:06 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:49:57 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:50:26 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			processing_percent_width_minus_flag(
 		va_list saved_variables, t_fnc_data *data)
 {
 	char *str;
-	
+
 	if (!(str = create_filled_string(data->width - 1, ' ')))
 		return (-1);
 	if (!(data->string = ft_strjoin_back(data->string, str)))
