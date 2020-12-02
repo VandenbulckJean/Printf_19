@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:20:49 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 14:32:55 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:43:18 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int			processing_c_width_minus_flag(t_fnc_data *data)
 	if (data->minus)
 	{
 		if (!(data->string = ft_strjoin_back(data->string, str)))
-			return (Memory_allocation_error_free(str));
+			return (memory_allocation_error_free(str));
 	}
 	else
 	{
 		if (!(data->string = ft_strjoin_front(data->string, str)))
-			return (Memory_allocation_error_free(str));
+			return (memory_allocation_error_free(str));
 	}
 	return (1);
 }
@@ -61,7 +61,7 @@ int			processing_c(t_fnc_data *data)
 	str[0] = va_arg(data->saved_variables, int);
 	str[1] = '\0';
 	if (!(data->string = ft_strjoin_back(data->string, str)))
-		return (Memory_allocation_error_free(str));
+		return (memory_allocation_error_free(str));
 	free(str);
 	return (processing_c_flags(data));
 }

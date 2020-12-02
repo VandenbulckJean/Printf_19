@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 12:26:55 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:36:49 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:41:57 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,13 @@ int		processing_d_width_precision(t_fnc_data *data, int negative)
 		if (!(data->string = ft_strjoin_front(data->string, "-")))
 			return (-1);
 	if (data->zero && data->amount_precision < 0)
-	{
 		if (!(str = create_filled_string(data->width -
 		ft_strlen(data->string), '0')))
 			return (-1);
-	}
-	else
-	{
+	if (!(data->zero && data->amount_precision < 0))
 		if (!(str = create_filled_string(data->width -
 		ft_strlen(data->string), ' ')))
 			return (-1);
-	}
 	if (!(data->string = ft_strjoin_front(data->string, str)))
 		return (memory_allocation_error_free(str));
 	free(str);
@@ -76,7 +72,7 @@ int		processing_d_width_minus(t_fnc_data *data, int negative)
 	ft_strlen(data->string), ' ')))
 		return (-1);
 	if (!(data->string = ft_strjoin_back(data->string, str)))
-		return (Memory_allocation_error_free(str));
+		return (memory_allocation_error_free(str));
 	free(str);
 	return (1);
 }
@@ -89,7 +85,7 @@ int		processing_d_width_zero(t_fnc_data *data, int negative)
 	ft_strlen(data->string), '0')))
 		return (-1);
 	if (!(data->string = ft_strjoin_front(data->string, str)))
-		return (Memory_allocation_error_free(str));
+		return (memory_allocation_error_free(str));
 	free(str);
 	if (negative && data->string[0] == '0')
 		data->string[0] = '-';
@@ -120,7 +116,7 @@ int		processing_d_width_flag(t_fnc_data *data, int negative)
 		ft_strlen(data->string), ' ')))
 			return (-1);
 		if (!(data->string = ft_strjoin_front(data->string, str)))
-			return (Memory_allocation_error_free(str));
+			return (memory_allocation_error_free(str));
 		free(str);
 		return (1);
 	}

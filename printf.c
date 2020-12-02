@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:15:34 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:48:49 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int				ft_printf(const char *entry, ...)
 	va_start(data->saved_variables, entry);
 	return_value = entry_processing((char *)entry, data);
 	va_end(data->saved_variables);
-	free_data(data);
+	free(data);
 	return (return_value);
 }

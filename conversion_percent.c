@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:06 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 14:39:12 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:42:23 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			processing_percent_width_minus_flag(t_fnc_data *data)
 	if (!(str = create_filled_string(data->width - 1, ' ')))
 		return (-1);
 	if (!(data->string = ft_strjoin_back(data->string, str)))
-		return (Memory_allocation_error_free(str));
+		return (memory_allocation_error_free(str));
 	free(str);
 	return (1);
 }
@@ -31,7 +31,7 @@ int			processing_percent_width_zero_flag(t_fnc_data *data)
 	if (!(str = create_filled_string(data->width - 1, '0')))
 		return (-1);
 	if (!(data->string = ft_strjoin_front(data->string, str)))
-		return (Memory_allocation_error_free(str));
+		return (memory_allocation_error_free(str));
 	free(str);
 	return (1);
 }
@@ -43,7 +43,7 @@ int			processing_percent_width_flag(t_fnc_data *data)
 	if (!(str = create_filled_string(data->width - 1, ' ')))
 		return (-1);
 	if (!(data->string = ft_strjoin_front(data->string, str)))
-		return (Memory_allocation_error_free(str));
+		return (memory_allocation_error_free(str));
 	free(str);
 	return (1);
 }

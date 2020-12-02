@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:22:03 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:14:59 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:50:38 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int				processing_u(t_fnc_data *data);
 int				processing_x(t_fnc_data *data);
 int				processing_cap_x(t_fnc_data *data);
 int				processing_percent(t_fnc_data *data);
-void			free_data(t_fnc_data *data);
 int				parsing(t_fnc_data *data, int start, int range, char *entry);
 char			*ft_itoa_pointer(unsigned long long int n,
 int base, char *basestr);

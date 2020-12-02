@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:27 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:16:20 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:46:52 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		resolve(t_fnc_data *data)
 	if (data->conversion == 'x')
 		return (processing_x(data));
 	if (data->conversion == 'X')
-		return (processing_X(data));
+		return (processing_cap_x(data));
 	if (data->conversion == '%')
 		return (processing_percent(data));
 	return (-2);

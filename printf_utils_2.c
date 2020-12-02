@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:46 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 14:41:41 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:50:33 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ int			isinstr(char *str, char c)
 		i++;
 	}
 	return (0);
-}
-
-void		free_data(t_fnc_data *data)
-{
-	free(data->string);
-	free(data);
 }
 
 char		*ft_strdup(char *s1)
