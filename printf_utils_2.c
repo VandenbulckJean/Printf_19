@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:46 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:02:10 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:34:32 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,10 @@ char		*ft_strdup(char *s1)
 	}
 	s1bis[i] = '\0';
 	return (s1bis);
+}
+
+int			free_all_return(t_fnc_data *data, int i)
+{
+	free_data(data);
+	return (i);
 }

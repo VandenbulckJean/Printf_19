@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:17:58 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:34:20 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ static int			entry_processing(va_list sv, char *entry, t_fnc_data *data)
 				return (-1);
 			while (!(isinstr("cspdiuxX%", entry[i])) && entry[i])
 				if (!(isinstr("-.*0123456789", entry[i++])))
-					return (0);
+					return (free_all_return(data, 0));
 			if (parsing(sv, data, start, i++ - start, entry) == -1)
-				return (-1);
+				return (free_all_return(data, -1));
 			write_count_free(data, &writtenchar);
 		}
 	}

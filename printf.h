@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:22:03 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 12:28:58 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:34:38 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int processing_d_width_zero(va_list saved_variables, t_fnc_data *data, int negat
 int processing_d_width_minus(va_list saved_variables, t_fnc_data *data, int negative);
 int processing_d_width_precision(va_list saved_variables, t_fnc_data *data, int negative);
 int processing_d_width_minus_precison(va_list saved_variables, t_fnc_data *data, int negative);
+int			free_all_return(t_fnc_data *data, int i);
 
 
 
