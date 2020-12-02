@@ -6,11 +6,11 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:42 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:18:43 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:29:59 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "printf.h"
+#include "printf.h"
 
 char	*create_filled_string(int length, char filler)
 {

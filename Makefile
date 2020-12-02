@@ -6,7 +6,7 @@
 #    By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 16:40:44 by jvanden-          #+#    #+#              #
-#    Updated: 2020/12/02 12:31:46 by jvanden-         ###   ########.fr        #
+#    Updated: 2020/12/02 15:30:25 by jvanden-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC = printf.c \
 	conversion_c.c \
 	conversion_s.c \
 	conversion_p.c \
-	conversion_uxX.c \
+	conversion_uxx.c \
 	conversion_percent.c \
 
 OBJ = $(SRC:.c=.o)
