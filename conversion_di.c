@@ -6,14 +6,14 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:20:54 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 12:39:32 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 12:57:33 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
 int				processing_d_precision_flag(va_list
-saved_variables, t_fnc_data *data, int negative)
+ saved_variables, t_fnc_data *data, int negative)
 {
 	char *str;
 
@@ -29,15 +29,16 @@ saved_variables, t_fnc_data *data, int negative)
 	return(1);
 }
 
-int				processing_d_flags(va_list saved_variables, t_fnc_data *data, int negative)
+int				processing_d_flags(va_list saved_variables,
+ t_fnc_data *data, int negative)
 {
-	if (data->width)	
-		return(processing_d_width_flag(saved_variables, data, negative));
+	if (data->width)
+		return (processing_d_width_flag(saved_variables, data, negative));
 	if (data->precision)
-		return(processing_d_precision_flag(saved_variables, data, negative));
+		return (processing_d_precision_flag(saved_variables, data, negative));
 	if (negative)
-			if (!(data->string = ft_strjoin_front(data->string, "-")))
-				return (-1);
+		if (!(data->string = ft_strjoin_front(data->string, "-")))
+			return (-1);
 	return (1);
 }
 
