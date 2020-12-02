@@ -6,7 +6,7 @@
 #    By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 16:40:44 by jvanden-          #+#    #+#              #
-#    Updated: 2020/12/02 12:16:21 by jvanden-         ###   ########.fr        #
+#    Updated: 2020/12/02 12:31:46 by jvanden-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = printf.c \
 	printf_flag_utils.c \
 	printf_conversion_utils.c \
 	conversion_di.c \
+	conversion_di_2.c \
 	conversion_c.c \
 	conversion_s.c \
 	conversion_p.c \
