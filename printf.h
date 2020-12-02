@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:22:03 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:14:01 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:14:59 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ int				processing_cap_x(t_fnc_data *data);
 int				processing_percent(t_fnc_data *data);
 void			free_data(t_fnc_data *data);
 int				parsing(t_fnc_data *data, int start, int range, char *entry);
-char			*ft_itoa_pointer(unsigned long long int n, int base, char *basestr);
+char			*ft_itoa_pointer(unsigned long long int n,
+int base, char *basestr);
 int				processing_d_width_flag(t_fnc_data *data, int negative);
 int				processing_d_width_zero(t_fnc_data *data, int negative);
 int				processing_d_width_minus(t_fnc_data *data, int negative);
 int				processing_d_width_precision(t_fnc_data *data, int negative);
-int				processing_d_width_minus_precison(t_fnc_data *data, int negative);
+int				processing_d_width_minus_precison(t_fnc_data *data,
+int negative);
 int				free_string_return(t_fnc_data *data, int i);
 
 #endif
