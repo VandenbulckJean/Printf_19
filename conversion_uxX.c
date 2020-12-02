@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:20 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 14:42:24 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:09:05 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	processing_x(t_fnc_data *data)
 	return(processing_d_flags(data, 0));
 }
 
-int	processing_X(t_fnc_data *data)
+int	processing_cap_x(t_fnc_data *data)
 {
 	char *str;
 	unsigned int value;

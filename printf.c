@@ -6,13 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:04:44 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:06:09 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static int	setzero(t_fnc_data *data)
+static int		setzero(t_fnc_data *data)
 {
 	data->amount_precision = 0;
 	data->precision = 0;
@@ -29,7 +29,7 @@ static int	setzero(t_fnc_data *data)
 	return (1);
 }
 
-static void			write_count_free(t_fnc_data *data, int *writtenchar)
+static void		write_count_free(t_fnc_data *data, int *writtenchar)
 {
 	putstr(data->string);
 	*writtenchar = *writtenchar + ft_strlen(data->string);
@@ -42,7 +42,7 @@ static void			write_count(char c, int *writtenchar)
 	(*writtenchar)++;
 }
 
-static int			entry_processing(char *entry, t_fnc_data *data)
+static int		entry_processing(char *entry, t_fnc_data *data)
 {
 	int i;
 	int start;
@@ -70,7 +70,7 @@ static int			entry_processing(char *entry, t_fnc_data *data)
 	return (writtenchar);
 }
 
-int					ft_printf(const char *entry, ...)
+int				ft_printf(const char *entry, ...)
 {
 	t_fnc_data	*data;
 	int			return_value;

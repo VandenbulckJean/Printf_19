@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:42 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/01 13:21:43 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:08:59 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ char 	*create_filled_string(int length, char filler)
 	return (str);
 }
 
-int		Memory_allocation_error_free(void *to_free)
+int		memory_allocation_error_free(void *to_free)
 {
 	free(to_free);
 	return (-1);
 }
 
-char *truncstr(char *oldstr, int range)
+char 	*truncstr(char *oldstr, int range)
 {
 	char *newstr;
 	int i;
