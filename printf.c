@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:08:18 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:12:24 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ static void			write_count(char c, int *writtenchar)
 	(*writtenchar)++;
 }
 
-static int			entry_processing(va_list saved_variables,
-	char *entry, t_fnc_data *fnc_data)
+static int			entry_processing(va_list sv, char *entry, t_fnc_data *data)
 {
 	int i;
 	int start;
@@ -63,15 +62,14 @@ static int			entry_processing(va_list saved_variables,
 		if (entry[i] && entry[i] == '%')
 		{
 			start = ++i;
-			if (!(fnc_data = mallocandsetzero()))
+			if (!(data = mallocandsetzero()))
 				return (-1);
 			while (!(isinstr("cspdiuxX%", entry[i])) && entry[i])
 				if (!(isinstr("-.*0123456789", entry[i++])))
 					return (0);
-			if ((return_value = parsing(saved_variables,
-			fnc_data, start, i++ - start, entry)) == -1)
+			if ((return_value = parsing(sv, data, start, i++ - start, entry)) == -1)
 				return (return_value);
-			write_count_free(fnc_data, &writtenchar);
+			write_count_free(data, &writtenchar);
 		}
 	}
 	return (writtenchar);
