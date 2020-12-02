@@ -6,13 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:31 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:19:38 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:56:15 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int				get_size(unsigned long long int n, int base)
+static int		get_size(unsigned long long int n, int base)
 {
 	int size;
 
@@ -25,7 +25,7 @@ int				get_size(unsigned long long int n, int base)
 	return (size);
 }
 
-void			get_sign(long long int n,
+static void		get_sign(long long int n,
 	unsigned long long int *temp, int *sign)
 {
 	if (n < 0)

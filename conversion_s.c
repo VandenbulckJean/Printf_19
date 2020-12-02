@@ -6,18 +6,18 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:14 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:42:34 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:54:36 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int			processing_s_zero_flag(void)
+static int	processing_s_zero_flag(void)
 {
 	return (-12);
 }
 
-int			processing_s_precision_flag(t_fnc_data *data)
+static int	processing_s_precision_flag(t_fnc_data *data)
 {
 	if (data->amount_precision <
 	ft_strlen(data->string) && data->amount_precision >= 0)
@@ -26,7 +26,7 @@ int			processing_s_precision_flag(t_fnc_data *data)
 	return (1);
 }
 
-int			processing_s_width_minus_flag(t_fnc_data *data)
+static int	processing_s_width_minus_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -46,7 +46,7 @@ int			processing_s_width_minus_flag(t_fnc_data *data)
 	return (1);
 }
 
-int			processing_s_flags(t_fnc_data *data)
+static int	processing_s_flags(t_fnc_data *data)
 {
 	if (data->zero)
 		return (processing_s_zero_flag());

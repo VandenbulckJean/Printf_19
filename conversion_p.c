@@ -6,23 +6,23 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:20:59 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:42:13 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:53:20 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int			processing_p_zero_flag(void)
+static int	processing_p_zero_flag(void)
 {
 	return (-13);
 }
 
-int			processing_p_precision_flg(void)
+static int	processing_p_precision_flg(void)
 {
 	return (-14);
 }
 
-int			processing_p_width_minus_flag(t_fnc_data *data)
+static int	processing_p_width_minus_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -42,7 +42,7 @@ int			processing_p_width_minus_flag(t_fnc_data *data)
 	return (1);
 }
 
-int			processing_p_flags(t_fnc_data *data)
+static int	processing_p_flags(t_fnc_data *data)
 {
 	if (data->precision && data->amount_precision != 0)
 		return (processing_p_precision_flg());

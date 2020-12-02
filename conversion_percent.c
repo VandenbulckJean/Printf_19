@@ -6,13 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:06 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:42:23 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:54:11 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int			processing_percent_width_minus_flag(t_fnc_data *data)
+static int	processing_percent_width_minus_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -24,7 +24,7 @@ int			processing_percent_width_minus_flag(t_fnc_data *data)
 	return (1);
 }
 
-int			processing_percent_width_zero_flag(t_fnc_data *data)
+static int	processing_percent_width_zero_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -36,7 +36,7 @@ int			processing_percent_width_zero_flag(t_fnc_data *data)
 	return (1);
 }
 
-int			processing_percent_width_flag(t_fnc_data *data)
+static int	processing_percent_width_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -48,7 +48,7 @@ int			processing_percent_width_flag(t_fnc_data *data)
 	return (1);
 }
 
-int			processing_percent_flags(t_fnc_data *data)
+static int	processing_percent_flags(t_fnc_data *data)
 {
 	if (data->width)
 	{

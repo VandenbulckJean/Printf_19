@@ -6,13 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:27 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:46:52 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:55:49 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	get_precision(t_fnc_data *data, int *start, int *range, char *entry)
+static void	get_precision(t_fnc_data *data, int *start, int *range, char *entry)
 {
 	data->precision = 1;
 	(*start)++;
@@ -37,7 +37,7 @@ void	get_precision(t_fnc_data *data, int *start, int *range, char *entry)
 		data->precision = 0;
 }
 
-void	get_width(t_fnc_data *data, int *start, int *range, char *entry)
+static void	get_width(t_fnc_data *data, int *start, int *range, char *entry)
 {
 	while (isnumber(entry[*start]) && *range)
 	{
@@ -47,7 +47,7 @@ void	get_width(t_fnc_data *data, int *start, int *range, char *entry)
 	}
 }
 
-void	get_width_star(t_fnc_data *data, int *start, int *range, char *entry)
+static void	get_width_star(t_fnc_data *data, int *start, int *range, char *entry)
 {
 	int star_value;
 
@@ -62,7 +62,7 @@ void	get_width_star(t_fnc_data *data, int *start, int *range, char *entry)
 	(*range)--;
 }
 
-int		resolve(t_fnc_data *data)
+static int	resolve(t_fnc_data *data)
 {
 	char *str;
 
@@ -85,7 +85,7 @@ int		resolve(t_fnc_data *data)
 	return (-2);
 }
 
-int		parsing(t_fnc_data *data, int start, int range, char *entry)
+int			parsing(t_fnc_data *data, int start, int range, char *entry)
 {
 	data->conversion = entry[start + range];
 	while (range)

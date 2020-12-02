@@ -6,13 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:20:54 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:48:14 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:55:02 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int				processing_d_precision_flag(t_fnc_data *data, int negative)
+static int			processing_d_precision_flag(t_fnc_data *data, int negative)
 {
 	char *str;
 
@@ -28,7 +28,7 @@ int				processing_d_precision_flag(t_fnc_data *data, int negative)
 	return (1);
 }
 
-int				processing_d_flags(t_fnc_data *data, int negative)
+int					processing_d_flags(t_fnc_data *data, int negative)
 {
 	if (data->width)
 		return (processing_d_width_flag(data, negative));
@@ -40,7 +40,7 @@ int				processing_d_flags(t_fnc_data *data, int negative)
 	return (1);
 }
 
-unsigned int	get_value(va_list saved_variables, int *negative)
+static unsigned int	get_value(va_list saved_variables, int *negative)
 {
 	int				value;
 	unsigned int	newvalue;
@@ -58,7 +58,7 @@ unsigned int	get_value(va_list saved_variables, int *negative)
 	return (newvalue);
 }
 
-int				processing_d(t_fnc_data *data)
+int					processing_d(t_fnc_data *data)
 {
 	char				*str;
 	unsigned int		value;
