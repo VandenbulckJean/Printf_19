@@ -6,11 +6,11 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:46 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:01:05 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:02:10 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "printf.h"
+#include "printf.h"
 
 int			isinstr(char *str, char c)
 {
