@@ -6,16 +6,16 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:12:24 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:14:45 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "printf.h"
+#include "printf.h"
 
-static t_fnc_data	*mallocandsetzero()
+static t_fnc_data	*mallocandsetzero(void)
 {
 	t_fnc_data	*data;
-	
+
 	if (!(data = malloc(sizeof(t_fnc_data))))
 		return (NULL);
 	data->amount_precision = 0;
@@ -67,7 +67,8 @@ static int			entry_processing(va_list sv, char *entry, t_fnc_data *data)
 			while (!(isinstr("cspdiuxX%", entry[i])) && entry[i])
 				if (!(isinstr("-.*0123456789", entry[i++])))
 					return (0);
-			if ((return_value = parsing(sv, data, start, i++ - start, entry)) == -1)
+			if ((return_value = parsing(sv,
+			data, start, i++ - start, entry)) == -1)
 				return (return_value);
 			write_count_free(data, &writtenchar);
 		}
