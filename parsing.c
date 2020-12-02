@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:27 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/01 13:21:28 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:58:01 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,22 @@ void	get_width(va_list saved_variables, t_fnc_data *data, int *start, int *range
 	}
 }
 
-int	resolve(va_list saved_variables, t_fnc_data *data)
+void	get_width_star(va_list saved_variables, t_fnc_data *data, int *start, int *range, char *entry)
+{
+	int star_value;
+
+	star_value = va_arg(saved_variables, int);
+	if (star_value < 0)
+	{
+		data->minus = 1;
+		star_value = -star_value;
+	}
+	data->width = star_value;
+	(*start)++;
+	(*range)--;
+}
+
+int		resolve(va_list saved_variables, t_fnc_data *data)
 {
 	char *str;
 
@@ -69,14 +84,11 @@ int	resolve(va_list saved_variables, t_fnc_data *data)
 	return (-2);
 }
 
-int	parsing(va_list saved_variables, t_fnc_data *data, int start, int range, char *entry)
+int		parsing(va_list saved_variables, t_fnc_data *data, int start, int range, char *entry)
 {
-	int star_value;
-
 	data->conversion = entry[start+range];
 	while (range)
 	{
-
 		if (entry[start] == '.')
 			get_precision(saved_variables, data, &start, &range, entry);
 		if ((entry[start] >= '1' && entry[start] <= '9') && range)
@@ -94,17 +106,7 @@ int	parsing(va_list saved_variables, t_fnc_data *data, int start, int range, cha
 			range--;
 		}
 		if (entry[start] == '*' && range)
-		{
-			star_value = va_arg(saved_variables, int);
-			if (star_value < 0)
-			{
-				data->minus = 1;
-				star_value = -star_value;
-			}
-			data->width = star_value;
-			start++;
-			range--;
-		}
+			get_width_star(saved_variables, data, &start, &range, entry);
 	}
 	return (resolve(saved_variables, data));
 }
