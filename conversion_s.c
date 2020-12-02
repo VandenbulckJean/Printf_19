@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:14 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:05:38 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 14:40:11 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int			processing_s_zero_flag(void)
 	return (-12);
 }
 
-int			processing_s_precision_flag(va_list saved_variables,
-	t_fnc_data *data)
+int			processing_s_precision_flag(t_fnc_data *data)
 {
 	if (data->amount_precision <
 	ft_strlen(data->string) && data->amount_precision >= 0)
@@ -27,8 +26,7 @@ int			processing_s_precision_flag(va_list saved_variables,
 	return (1);
 }
 
-int			processing_s_width_minus_flag(va_list saved_variables,
-	t_fnc_data *data)
+int			processing_s_width_minus_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -48,26 +46,26 @@ int			processing_s_width_minus_flag(va_list saved_variables,
 	return (1);
 }
 
-int			processing_s_flags(va_list saved_variables, t_fnc_data *data)
+int			processing_s_flags(t_fnc_data *data)
 {
 	if (data->zero)
 		return (processing_s_zero_flag());
 	if (data->precision)
-		if (processing_s_precision_flag(saved_variables, data) == -1)
+		if (processing_s_precision_flag(data) == -1)
 			return (-1);
 	if (data->width)
-		return (processing_s_width_minus_flag(saved_variables, data));
+		return (processing_s_width_minus_flag(data));
 	return (1);
 }
 
-int			processing_s(va_list saved_variables, t_fnc_data *data)
+int			processing_s(t_fnc_data *data)
 {
 	char *str;
 
-	if (!(str = ft_strdup(va_arg(saved_variables, char*))))
+	if (!(str = ft_strdup(va_arg(data->saved_variables, char*))))
 		return (-1);
 	if (!(data->string = ft_strjoin_back(data->string, str)))
 		return (Memory_allocation_error_free(str));
 	free(str);
-	return (processing_s_flags(saved_variables, data));
+	return (processing_s_flags(data));
 }

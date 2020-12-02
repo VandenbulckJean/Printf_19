@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:20:59 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:46:15 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 14:37:17 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int			processing_p_precision_flg(void)
 	return (-14);
 }
 
-int			processing_p_width_minus_flag(
-		va_list saved_variables, t_fnc_data *data)
+int			processing_p_width_minus_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -43,23 +42,23 @@ int			processing_p_width_minus_flag(
 	return (1);
 }
 
-int			processing_p_flags(va_list saved_variables, t_fnc_data *data)
+int			processing_p_flags(t_fnc_data *data)
 {
 	if (data->precision && data->amount_precision != 0)
 		return (processing_p_precision_flg());
 	if (data->zero)
 		return (processing_p_zero_flag());
 	if (data->width)
-		return (processing_p_width_minus_flag(saved_variables, data));
+		return (processing_p_width_minus_flag(data));
 	return (1);
 }
 
-int			processing_p(va_list saved_variables, t_fnc_data *data)
+int			processing_p(t_fnc_data *data)
 {
 	char					*str;
 	unsigned long long int	value;
 
-	value = va_arg(saved_variables, unsigned long long int);
+	value = va_arg(data->saved_variables, unsigned long long int);
 	if (!(data->string = ft_strjoin_back(data->string, "0x")))
 		return (-1);
 	if (!(data->precision && value == 0))
@@ -70,5 +69,5 @@ int			processing_p(va_list saved_variables, t_fnc_data *data)
 			return (Memory_allocation_error_free(str));
 		free(str);
 	}
-	return (processing_p_flags(saved_variables, data));
+	return (processing_p_flags(data));
 }

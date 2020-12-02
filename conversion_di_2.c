@@ -6,13 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 12:26:55 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 12:31:26 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 14:36:41 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "printf.h"
 
-int processing_d_width_minus_precison(va_list saved_variables, t_fnc_data *data, int negative)
+int processing_d_width_minus_precison(t_fnc_data *data, int negative)
 {
 	char *str;
 
@@ -32,11 +32,10 @@ int processing_d_width_minus_precison(va_list saved_variables, t_fnc_data *data,
 	return(1);
 }
 
-int processing_d_width_precision(va_list saved_variables, t_fnc_data *data, int negative)
+int processing_d_width_precision(t_fnc_data *data, int negative)
 {
 	char *str;
 
-	//printf("1: %s\n", data->string);
 	if (!(str = create_filled_string(data->amount_precision - ft_strlen(data->string), '0')))
 		return (-1);
 	if (!(data->string = ft_strjoin_front(data->string, str)))
@@ -45,8 +44,6 @@ int processing_d_width_precision(va_list saved_variables, t_fnc_data *data, int 
 	if (negative)
 		if (!(data->string = ft_strjoin_front(data->string, "-")))
 			return (-1);
-			//printf("2: %s\n", data->string);
-
 	if (data->zero && data->amount_precision < 0)
 	{
 		if (!(str = create_filled_string(data->width - ft_strlen(data->string), '0')))
@@ -63,7 +60,7 @@ int processing_d_width_precision(va_list saved_variables, t_fnc_data *data, int 
 	return(1);
 }
 
-int processing_d_width_minus(va_list saved_variables, t_fnc_data *data, int negative)
+int processing_d_width_minus(t_fnc_data *data, int negative)
 {
 	char *str;
 
@@ -78,7 +75,7 @@ int processing_d_width_minus(va_list saved_variables, t_fnc_data *data, int nega
 	return(1);
 }
 
-int processing_d_width_zero(va_list saved_variables, t_fnc_data *data, int negative)
+int processing_d_width_zero(t_fnc_data *data, int negative)
 {
 	char *str;
 
@@ -95,18 +92,18 @@ int processing_d_width_zero(va_list saved_variables, t_fnc_data *data, int negat
 	return(1);
 }
 
-int processing_d_width_flag(va_list saved_variables, t_fnc_data *data, int negative)
+int processing_d_width_flag(t_fnc_data *data, int negative)
 {
 	char *str;
 
 	if (data->precision && data->minus)
-		return(processing_d_width_minus_precison(saved_variables, data, negative));
+		return(processing_d_width_minus_precison(data, negative));
 	if (data->precision && !(data->minus))
-		return (processing_d_width_precision(saved_variables, data, negative));
+		return (processing_d_width_precision(data, negative));
 	if (data->minus)
-		return (processing_d_width_minus(saved_variables, data, negative));
+		return (processing_d_width_minus(data, negative));
 	if (data->zero)
-		return (processing_d_width_zero(saved_variables, data, negative));
+		return (processing_d_width_zero(data, negative));
 	else
 	{
 		if (negative)

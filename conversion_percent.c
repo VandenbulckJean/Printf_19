@@ -6,14 +6,13 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:06 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:50:26 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 14:39:12 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int			processing_percent_width_minus_flag(
-		va_list saved_variables, t_fnc_data *data)
+int			processing_percent_width_minus_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -25,8 +24,7 @@ int			processing_percent_width_minus_flag(
 	return (1);
 }
 
-int			processing_percent_width_zero_flag(
-		va_list saved_variables, t_fnc_data *data)
+int			processing_percent_width_zero_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -38,7 +36,7 @@ int			processing_percent_width_zero_flag(
 	return (1);
 }
 
-int			processing_percent_width_flag(va_list width, t_fnc_data *data)
+int			processing_percent_width_flag(t_fnc_data *data)
 {
 	char *str;
 
@@ -50,29 +48,29 @@ int			processing_percent_width_flag(va_list width, t_fnc_data *data)
 	return (1);
 }
 
-int			processing_percent_flags(va_list saved_variables, t_fnc_data *data)
+int			processing_percent_flags(t_fnc_data *data)
 {
 	if (data->width)
 	{
 		if (data->minus)
 		{
-			return (processing_percent_width_minus_flag(saved_variables, data));
+			return (processing_percent_width_minus_flag(data));
 		}
 		else if (data->zero)
 		{
-			return (processing_percent_width_zero_flag(saved_variables, data));
+			return (processing_percent_width_zero_flag(data));
 		}
 		else
 		{
-			return (processing_percent_width_flag(saved_variables, data));
+			return (processing_percent_width_flag(data));
 		}
 	}
 	return (1);
 }
 
-int			processing_percent(va_list saved_variables, t_fnc_data *data)
+int			processing_percent(t_fnc_data *data)
 {
 	if (!(data->string = ft_strjoin_back(data->string, "%")))
 		return (-1);
-	return (processing_percent_flags(saved_variables, data));
+	return (processing_percent_flags(data));
 }

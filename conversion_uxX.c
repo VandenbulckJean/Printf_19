@@ -6,18 +6,18 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:20 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/01 13:21:23 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 14:42:24 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "printf.h"
 
-int processing_u(va_list saved_variables, t_fnc_data *data)
+int processing_u(t_fnc_data *data)
 {
 	char *str;
 	unsigned int value;
 
-	value = va_arg(saved_variables, unsigned int);
+	value = va_arg(data->saved_variables, unsigned int);
 	if (data->precision && value == 0)
 	{
 		if (!(str = malloc(sizeof(char) * 1)))
@@ -32,15 +32,15 @@ int processing_u(va_list saved_variables, t_fnc_data *data)
 			return (Memory_allocation_error_free(str));
 	}
 	free(str);
-	return(processing_d_flags(saved_variables, data, 0));
+	return(processing_d_flags(data, 0));
 }
 
-int	processing_x(va_list saved_variables, t_fnc_data *data)
+int	processing_x(t_fnc_data *data)
 {
 	char *str;
 	unsigned int value;
 
-	value = va_arg(saved_variables, unsigned int);
+	value = va_arg(data->saved_variables, unsigned int);
 	if (data->precision && value == 0)
 	{
 		if (!(str = malloc(sizeof(char) * 1)))
@@ -55,15 +55,15 @@ int	processing_x(va_list saved_variables, t_fnc_data *data)
 			return (Memory_allocation_error_free(str));
 	}
 	free(str);
-	return(processing_d_flags(saved_variables, data, 0));
+	return(processing_d_flags(data, 0));
 }
 
-int	processing_X(va_list saved_variables, t_fnc_data *data)
+int	processing_X(t_fnc_data *data)
 {
 	char *str;
 	unsigned int value;
 
-	value = va_arg(saved_variables, unsigned int);
+	value = va_arg(data->saved_variables, unsigned int);
 	if (data->precision && value == 0)
 	{
 		if (!(str = malloc(sizeof(char) * 1)))
@@ -78,5 +78,5 @@ int	processing_X(va_list saved_variables, t_fnc_data *data)
 			return (Memory_allocation_error_free(str));
 	}
 	free(str);
-	return(processing_d_flags(saved_variables, data, 0));
+	return(processing_d_flags(data, 0));
 }

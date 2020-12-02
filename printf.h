@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:22:03 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:53:15 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 14:33:40 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 
 typedef struct	s_fnc_data	{
+	va_list saved_variables;
 	int minus;
 	int zero;
 	int	precision;
@@ -39,25 +40,25 @@ char	*ft_strdup(char *s1);
 int		isnumber(char c);
 int		isinstr(char *str, char c);
 int		Memory_allocation_error_free(void *to_free);
-int		processing_c(va_list saved_variables, t_fnc_data *data);
+int		processing_c(t_fnc_data *data);
 char	*create_filled_string(int length, char filler);
-int		processing_d(va_list saved_variables, t_fnc_data *data);
-int		processing_d_flags(va_list saved_variables, t_fnc_data *data, int negative);
-int		processing_s(va_list saved_variables, t_fnc_data *data);
+int		processing_d(t_fnc_data *data);
+int		processing_d_flags(t_fnc_data *data, int negative);
+int		processing_s(t_fnc_data *data);
 char 	*truncstr(char *oldstr, int range);
-int		processing_p(va_list saved_variables, t_fnc_data *data);
-int		processing_u(va_list saved_variables, t_fnc_data *data);
-int		processing_x(va_list saved_variables, t_fnc_data *data);
-int		processing_X(va_list saved_variables, t_fnc_data *data);
-int		processing_percent(va_list saved_variables, t_fnc_data *data);
+int		processing_p(t_fnc_data *data);
+int		processing_u(t_fnc_data *data);
+int		processing_x(t_fnc_data *data);
+int		processing_X(t_fnc_data *data);
+int		processing_percent(t_fnc_data *data);
 void	free_data(t_fnc_data *data);
-int		parsing(va_list saved_variables, t_fnc_data *data, int start, int range, char *entry);
+int		parsing(t_fnc_data *data, int start, int range, char *entry);
 char	*ft_itoa_pointer(unsigned long long int n, int base, char *basestr);
-int		processing_d_width_flag(va_list saved_variables, t_fnc_data *data, int negative);
-int		processing_d_width_zero(va_list saved_variables, t_fnc_data *data, int negative);
-int		processing_d_width_minus(va_list saved_variables, t_fnc_data *data, int negative);
-int		processing_d_width_precision(va_list saved_variables, t_fnc_data *data, int negative);
-int		processing_d_width_minus_precison(va_list saved_variables, t_fnc_data *data, int negative);
-int		free_all_return(t_fnc_data *data, int i);
+int		processing_d_width_flag(t_fnc_data *data, int negative);
+int		processing_d_width_zero(t_fnc_data *data, int negative);
+int		processing_d_width_minus(t_fnc_data *data, int negative);
+int		processing_d_width_precision(t_fnc_data *data, int negative);
+int		processing_d_width_minus_precison(t_fnc_data *data, int negative);
+int		free_string_return(t_fnc_data *data, int i);
 
 #endif

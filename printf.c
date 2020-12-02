@@ -6,18 +6,14 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:34:20 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:04:44 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static t_fnc_data	*mallocandsetzero(void)
+static int	setzero(t_fnc_data *data)
 {
-	t_fnc_data	*data;
-
-	if (!(data = malloc(sizeof(t_fnc_data))))
-		return (NULL);
 	data->amount_precision = 0;
 	data->precision = 0;
 	data->minus = 0;
@@ -27,17 +23,17 @@ static t_fnc_data	*mallocandsetzero(void)
 	if (!(data->string = malloc(sizeof(char))))
 	{
 		free(data);
-		return (NULL);
+		return (0);
 	}
 	(data->string)[0] = '\0';
-	return (data);
+	return (1);
 }
 
 static void			write_count_free(t_fnc_data *data, int *writtenchar)
 {
 	putstr(data->string);
 	*writtenchar = *writtenchar + ft_strlen(data->string);
-	free_data(data);
+	free(data->string);
 }
 
 static void			write_count(char c, int *writtenchar)
@@ -46,7 +42,7 @@ static void			write_count(char c, int *writtenchar)
 	(*writtenchar)++;
 }
 
-static int			entry_processing(va_list sv, char *entry, t_fnc_data *data)
+static int			entry_processing(char *entry, t_fnc_data *data)
 {
 	int i;
 	int start;
@@ -61,13 +57,13 @@ static int			entry_processing(va_list sv, char *entry, t_fnc_data *data)
 		if (entry[i] && entry[i] == '%')
 		{
 			start = ++i;
-			if (!(data = mallocandsetzero()))
+			if (!(setzero(data)))
 				return (-1);
 			while (!(isinstr("cspdiuxX%", entry[i])) && entry[i])
 				if (!(isinstr("-.*0123456789", entry[i++])))
-					return (free_all_return(data, 0));
-			if (parsing(sv, data, start, i++ - start, entry) == -1)
-				return (free_all_return(data, -1));
+					return (free_string_return(data, 0));
+			if (parsing(data, start, i++ - start, entry) == -1)
+				return (free_string_return(data, -1));
 			write_count_free(data, &writtenchar);
 		}
 	}
@@ -76,12 +72,14 @@ static int			entry_processing(va_list sv, char *entry, t_fnc_data *data)
 
 int					ft_printf(const char *entry, ...)
 {
-	va_list		saved_variables;
-	t_fnc_data	*fnc_data;
+	t_fnc_data	*data;
 	int			return_value;
 
-	va_start(saved_variables, entry);
-	return_value = entry_processing(saved_variables, (char *)entry, fnc_data);
-	va_end(saved_variables);
+	if (!(data = malloc(sizeof(t_fnc_data))))
+		return (-1);
+	va_start(data->saved_variables, entry);
+	return_value = entry_processing((char *)entry, data);
+	va_end(data->saved_variables);
+	free_data(data);
 	return (return_value);
 }
