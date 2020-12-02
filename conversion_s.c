@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:14 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 13:04:48 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:05:38 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int			processing_s_zero_flag(void)
 	return (-12);
 }
 
-int			processing_s_precision_flag(va_list saved_variables, t_fnc_data *data)
+int			processing_s_precision_flag(va_list saved_variables,
+	t_fnc_data *data)
 {
 	if (data->amount_precision <
 	ft_strlen(data->string) && data->amount_precision >= 0)
@@ -26,7 +27,8 @@ int			processing_s_precision_flag(va_list saved_variables, t_fnc_data *data)
 	return (1);
 }
 
-int			processing_s_width_minus_flag(va_list saved_variables, t_fnc_data *data)
+int			processing_s_width_minus_flag(va_list saved_variables,
+	t_fnc_data *data)
 {
 	char *str;
 
