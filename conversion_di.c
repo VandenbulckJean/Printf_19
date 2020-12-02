@@ -6,14 +6,14 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:20:54 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 12:59:03 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 12:59:49 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int				processing_d_precision_flag(va_list
-	saved_variables, t_fnc_data *data, int negative)
+int				processing_d_precision_flag(va_list saved_variables,
+	t_fnc_data *data, int negative)
 {
 	char *str;
 
