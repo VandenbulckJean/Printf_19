@@ -6,11 +6,11 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:27 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 14:46:39 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:16:20 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "printf.h"
+#include "printf.h"
 
 void	get_precision(t_fnc_data *data, int *start, int *range, char *entry)
 {
@@ -27,7 +27,8 @@ void	get_precision(t_fnc_data *data, int *start, int *range, char *entry)
 	{
 		while (isnumber(entry[*start]) && *range)
 		{
-			data->amount_precision = (data->amount_precision * 10) + entry[*start] - '0';
+			data->amount_precision = (data->amount_precision * 10)
+			+ entry[*start] - '0';
 			(*start)++;
 			(*range)--;
 		}
@@ -68,19 +69,19 @@ int		resolve(t_fnc_data *data)
 	if (data->conversion == 'c')
 		return (processing_c(data));
 	if (data->conversion == 's')
-		return(processing_s(data));
+		return (processing_s(data));
 	if (data->conversion == 'p')
-		return(processing_p(data));
+		return (processing_p(data));
 	if (data->conversion == 'd' || data->conversion == 'i')
-		return(processing_d(data));
+		return (processing_d(data));
 	if (data->conversion == 'u')
-		return(processing_u(data));
+		return (processing_u(data));
 	if (data->conversion == 'x')
-		return(processing_x(data));
+		return (processing_x(data));
 	if (data->conversion == 'X')
-		return(processing_X(data));
+		return (processing_X(data));
 	if (data->conversion == '%')
-		return(processing_percent(data));
+		return (processing_percent(data));
 	return (-2);
 }
 

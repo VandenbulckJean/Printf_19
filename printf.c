@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:06:09 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:15:34 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void		write_count_free(t_fnc_data *data, int *writtenchar)
 	free(data->string);
 }
 
-static void			write_count(char c, int *writtenchar)
+static void		write_count(char c, int *writtenchar)
 {
 	write(1, &c, 1);
 	(*writtenchar)++;
