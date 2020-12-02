@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 12:26:06 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:08:18 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,21 @@ static t_fnc_data	*mallocandsetzero()
 	return (data);
 }
 
-static void write_count_free(t_fnc_data *data, int *writtenchar)
+static void			write_count_free(t_fnc_data *data, int *writtenchar)
 {
 	putstr(data->string);
 	*writtenchar = *writtenchar + ft_strlen(data->string);
 	free_data(data);
 }
 
-static void write_count(char c, int *writtenchar)
+static void			write_count(char c, int *writtenchar)
 {
 	write(1, &c, 1);
 	(*writtenchar)++;
 }
 
-static int	entry_processing(va_list saved_variables,char *entry, t_fnc_data *fnc_data)
+static int			entry_processing(va_list saved_variables,
+	char *entry, t_fnc_data *fnc_data)
 {
 	int i;
 	int start;
@@ -67,7 +68,8 @@ static int	entry_processing(va_list saved_variables,char *entry, t_fnc_data *fnc
 			while (!(isinstr("cspdiuxX%", entry[i])) && entry[i])
 				if (!(isinstr("-.*0123456789", entry[i++])))
 					return (0);
-			if ((return_value = parsing(saved_variables, fnc_data, start, i++ - start, entry)) == -1)
+			if ((return_value = parsing(saved_variables,
+			fnc_data, start, i++ - start, entry)) == -1)
 				return (return_value);
 			write_count_free(fnc_data, &writtenchar);
 		}
@@ -75,13 +77,13 @@ static int	entry_processing(va_list saved_variables,char *entry, t_fnc_data *fnc
 	return (writtenchar);
 }
 
-int		ft_printf(const char *entry, ...)
+int					ft_printf(const char *entry, ...)
 {
 	va_list		saved_variables;
 	t_fnc_data	*fnc_data;
 	int			return_value;
-	
-	va_start(saved_variables,  entry);
+
+	va_start(saved_variables, entry);
 	return_value = entry_processing(saved_variables, (char *)entry, fnc_data);
 	va_end(saved_variables);
 	return (return_value);
