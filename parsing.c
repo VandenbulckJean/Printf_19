@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:27 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:55:49 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:57:46 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static void	get_width(t_fnc_data *data, int *start, int *range, char *entry)
 	}
 }
 
-static void	get_width_star(t_fnc_data *data, int *start, int *range, char *entry)
+static void	get_width_star(t_fnc_data *data,
+	int *start, int *range, char *entry)
 {
 	int star_value;
 
