@@ -6,16 +6,16 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:20 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:09:05 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:20:44 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "printf.h"
+#include "printf.h"
 
 int processing_u(t_fnc_data *data)
 {
-	char *str;
-	unsigned int value;
+	char			*str;
+	unsigned int	value;
 
 	value = va_arg(data->saved_variables, unsigned int);
 	if (data->precision && value == 0)
@@ -32,13 +32,13 @@ int processing_u(t_fnc_data *data)
 			return (Memory_allocation_error_free(str));
 	}
 	free(str);
-	return(processing_d_flags(data, 0));
+	return (processing_d_flags(data, 0));
 }
 
 int	processing_x(t_fnc_data *data)
 {
-	char *str;
-	unsigned int value;
+	char			*str;
+	unsigned int	value;
 
 	value = va_arg(data->saved_variables, unsigned int);
 	if (data->precision && value == 0)
@@ -55,13 +55,13 @@ int	processing_x(t_fnc_data *data)
 			return (Memory_allocation_error_free(str));
 	}
 	free(str);
-	return(processing_d_flags(data, 0));
+	return (processing_d_flags(data, 0));
 }
 
 int	processing_cap_x(t_fnc_data *data)
 {
-	char *str;
-	unsigned int value;
+	char			*str;
+	unsigned int	value;
 
 	value = va_arg(data->saved_variables, unsigned int);
 	if (data->precision && value == 0)
@@ -78,5 +78,5 @@ int	processing_cap_x(t_fnc_data *data)
 			return (Memory_allocation_error_free(str));
 	}
 	free(str);
-	return(processing_d_flags(data, 0));
+	return (processing_d_flags(data, 0));
 }

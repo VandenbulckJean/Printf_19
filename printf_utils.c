@@ -6,11 +6,11 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:50 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/01 13:21:52 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:17:08 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "printf.h"
+#include "printf.h"
 
 void	putstr(char *str)
 {

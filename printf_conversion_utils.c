@@ -6,11 +6,11 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:31 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/01 13:21:32 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:19:38 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "printf.h"
+#include "printf.h"
 
 int				get_size(unsigned long long int n, int base)
 {
@@ -25,7 +25,8 @@ int				get_size(unsigned long long int n, int base)
 	return (size);
 }
 
-void			get_sign(long long int n, unsigned long long int *temp, int *sign)
+void			get_sign(long long int n,
+	unsigned long long int *temp, int *sign)
 {
 	if (n < 0)
 	{
@@ -38,10 +39,10 @@ void			get_sign(long long int n, unsigned long long int *temp, int *sign)
 
 char			*ft_itoa(long long int n, int base, char *basestr)
 {
-	int				sign;
-	int				size;
+	int						sign;
+	int						size;
 	unsigned long long int	temp;
-	char			*number;
+	char					*number;
 
 	sign = 0;
 	get_sign(n, &temp, &sign);
@@ -60,7 +61,8 @@ char			*ft_itoa(long long int n, int base, char *basestr)
 	return (number);
 }
 
-char			*ft_itoa_pointer(unsigned long long int n, int base, char *basestr)
+char			*ft_itoa_pointer(unsigned long long int n,
+	int base, char *basestr)
 {
 	int				size;
 	char			*number;
