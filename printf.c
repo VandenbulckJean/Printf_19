@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/04 11:34:09 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/04 15:19:47 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int		setzero(t_fnc_data *data)
 	data->width = 0;
 	data->zero = 0;
 	data->conversion = 0;
+	data->iszeroascii = 0;
 	if (!(data->string = malloc(sizeof(char))))
 	{
 		free(data);
@@ -31,7 +32,11 @@ static int		setzero(t_fnc_data *data)
 
 static void		write_count_free(t_fnc_data *data)
 {
+	if (data->iszeroascii && data->minus)
+		write(1, "\0", 1);
 	putstr(data->string);
+	if (data->iszeroascii && !(data->minus))
+		write(1, "\0", 1);
 	data->writtenchars = data->writtenchars + ft_strlen(data->string);
 	free(data->string);
 }
@@ -74,11 +79,15 @@ int				ft_printf(const char *entry, ...)
 	t_fnc_data	*data;
 	int			return_value;
 
-	if (!(data = malloc(sizeof(t_fnc_data))))
+	return_value = 0;
+	if (!(entry == NULL))
+	{
+		if (!(data = malloc(sizeof(t_fnc_data))))
 		return (-1);
-	va_start(data->saved_variables, entry);
-	return_value = entry_processing((char *)entry, data);
-	va_end(data->saved_variables);
-	free(data);
+		va_start(data->saved_variables, entry);
+		return_value = entry_processing((char *)entry, data);
+		va_end(data->saved_variables);
+		free(data);
+	}
 	return (return_value);
 }
