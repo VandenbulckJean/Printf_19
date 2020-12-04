@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:22:03 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:50:38 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/04 11:31:40 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef struct	s_fnc_data	{
 	va_list	saved_variables;
+	int		writtenchars;
 	int		minus;
 	int		zero;
 	int		precision;

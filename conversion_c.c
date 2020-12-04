@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:20:49 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:52:15 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/04 11:34:59 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int			processing_c(t_fnc_data *data)
 		return (-1);
 	str[0] = va_arg(data->saved_variables, int);
 	str[1] = '\0';
+	if (str[0] == '\0')
+		data->writtenchars++;
 	if (!(data->string = ft_strjoin_back(data->string, str)))
 		return (memory_allocation_error_free(str));
 	free(str);

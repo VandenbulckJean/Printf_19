@@ -6,7 +6,7 @@
 /*   By: jvanden- <jvanden-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:21:58 by jvanden-          #+#    #+#             */
-/*   Updated: 2020/12/02 15:48:49 by jvanden-         ###   ########.fr       */
+/*   Updated: 2020/12/04 11:34:09 by jvanden-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,30 @@ static int		setzero(t_fnc_data *data)
 	return (1);
 }
 
-static void		write_count_free(t_fnc_data *data, int *writtenchar)
+static void		write_count_free(t_fnc_data *data)
 {
 	putstr(data->string);
-	*writtenchar = *writtenchar + ft_strlen(data->string);
+	data->writtenchars = data->writtenchars + ft_strlen(data->string);
 	free(data->string);
 }
 
-static void		write_count(char c, int *writtenchar)
+static void		write_count(char c, t_fnc_data *data)
 {
 	write(1, &c, 1);
-	(*writtenchar)++;
+	data->writtenchars++;
 }
 
 static int		entry_processing(char *entry, t_fnc_data *data)
 {
 	int i;
 	int start;
-	int writtenchar;
 
 	i = 0;
-	writtenchar = 0;
+	data->writtenchars = 0;
 	while (entry[i])
 	{
 		while (entry[i] && entry[i] != '%')
-			write_count(entry[i++], &writtenchar);
+			write_count(entry[i++], data);
 		if (entry[i] && entry[i] == '%')
 		{
 			start = ++i;
@@ -64,10 +63,10 @@ static int		entry_processing(char *entry, t_fnc_data *data)
 					return (free_string_return(data, 0));
 			if (parsing(data, start, i++ - start, entry) == -1)
 				return (free_string_return(data, -1));
-			write_count_free(data, &writtenchar);
+			write_count_free(data);
 		}
 	}
-	return (writtenchar);
+	return (data->writtenchars);
 }
 
 int				ft_printf(const char *entry, ...)
